@@ -137,7 +137,7 @@ header {
   overflow: hidden;
   width: 100%;
   text-align: center;
-  color: var(--muted); /* Changed from surface2 to muted for better visibility */
+  color: var(--muted); 
   letter-spacing: 0.05em;
   line-height: 1;
   transition: color 0.3s, text-shadow 0.3s;
@@ -227,13 +227,64 @@ header {
   <div class="modal-bg" id="help-modal" onclick="handleHelpBgClick(event)">
     <div class="modal-box">
       <h2>HammerSpin Help</h2>
+
       <p class="help-h3">What is HammerSpin?</p>
       <p>A fun, digital replacement for the classic pre-game coin toss. Decide who gets the hammer and who picks the rock colors with a quick tap or a satisfying swipe.</p>
+
       <div class="help-divider"></div>
+
       <p class="help-h3">How to Use</p>
       <p><strong style="color:#e8f4f8;">Swipe Mode</strong> &mdash; Drag and flick the mascot to spin it manually. The harder you swipe, the longer it spins!</p>
       <p><strong style="color:#e8f4f8;">Tap Mode</strong> &mdash; Simply tap the mascot to initiate an automatic, randomized 3D coin spin.</p>
+
       <div class="help-divider"></div>
+
+      <p class="help-h3">Also Try</p>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x23F1;&#xFE0F;</div>
+        <div class="help-promo-text">
+          <strong>HammerTime</strong>
+          A free curling delivery timer. Time rocks from hog-to-hog and track where they end up.
+          <br><a class="help-link" href="https://optimustestprime.github.io/HammerTime/" target="_blank">Try HammerTime &rarr;</a>
+        </div>
+      </div>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x1F4CA;</div>
+        <div class="help-promo-text">
+          <strong>StoneStat</strong>
+          Track shot scores, player percentages, and game history for your whole team.
+          <br><a class="help-link" href="https://optimustestprime.github.io/stone-stat" target="_blank">Try StoneStat &rarr;</a>
+        </div>
+      </div>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x1F94C;</div>
+        <div class="help-promo-text">
+          <strong>PaceKeeper</strong>
+          Keep your club matches on schedule and ensure everyone knows the rule when the buzzer sounds.
+          <br><a class="help-link" href="https://optimustestprime.github.io/pacekeeper" target="_blank">Try PaceKeeper &rarr;</a>
+        </div>
+      </div>
+
+      <div class="help-divider"></div>
+
+      <p class="help-h3">Connect</p>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x1F4F8;</div>
+        <div class="help-promo-text">
+          <strong>Instagram</strong>
+          Follow for updates, new features and curling content.
+          <br><a class="help-link" href="https://www.instagram.com/hammertimecurling" target="_blank">@hammertimecurling &rarr;</a>
+        </div>
+      </div>
+      <div class="help-promo" style="margin-top:10px;">
+        <div class="help-promo-icon">&#x2615;</div>
+        <div class="help-promo-text">
+          <strong>Buy Me a Coffee</strong>
+          HammerTime apps are free forever. If they help your club, a coffee keeps development going!
+          <br><a class="help-link" href="https://buymeacoffee.com/CoffeeForCurling" target="_blank">buymeacoffee.com/CoffeeForCurling &rarr;</a>
+        </div>
+      </div>
+
       <div class="modal-btns">
         <button class="btn btn-outline" onclick="closeHelp()">Close</button>
       </div>
@@ -299,7 +350,6 @@ header {
     mode = newMode;
     document.getElementById('btn-tap').classList.toggle('active', mode === 'tap');
     document.getElementById('btn-spin').classList.toggle('active', mode === 'swipe');
-    // Updated text to use "SPIN"
     instructionEl.innerText = mode === 'tap' ? "TAP MASCOT TO SPIN" : "SWIPE MASCOT TO SPIN";
     wrapper.style.cursor = mode === 'tap' ? 'pointer' : 'grab';
   }
@@ -314,7 +364,6 @@ header {
       resultEl.innerText = "TAILS";
       resultEl.className = "result-display show-tails";
     }
-    // Updated text to use "SPIN"
     instructionEl.innerText = mode === 'tap' ? "TAP MASCOT TO SPIN AGAIN" : "SWIPE MASCOT TO SPIN AGAIN";
     instructionEl.style.opacity = '1';
     isSpinning = false;
@@ -325,7 +374,7 @@ header {
     initAudio();
     playTick(); 
     resultEl.className = 'result-display spinning';
-    resultEl.innerText = "SPINNING..."; // Updated from "FLIPPING"
+    resultEl.innerText = "SPINNING...";
     instructionEl.style.opacity = '0';
     const isHeads = Math.random() < 0.5;
     let baseRotation = Math.ceil(currentRotation / 360) * 360;
