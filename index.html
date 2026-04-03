@@ -31,14 +31,15 @@ body {
   color: var(--ice); 
   min-height: 100vh; 
   -webkit-font-smoothing: antialiased; 
-  padding: 16px 16px 60px; 
+  padding: 16px; 
   overflow-x: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
   touch-action: manipulation;
 }
 
-.app { max-width: 480px; width: 100%; margin: 0 auto; }
+.app { max-width: 480px; width: 100%; margin: 0 auto; transition: max-width 0.3s ease; }
 
 /* HEADER & TOGGLE */
 header { 
@@ -66,9 +67,7 @@ header {
 }
 
 .header-controls { display: flex; gap: 8px; align-items: center; }
-
 .btn { font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; padding:8px 18px; border-radius:4px; border:none; cursor:pointer; -webkit-appearance:none; appearance:none; transition:opacity 0.15s; }
-.btn:active { opacity:0.7; }
 .btn-outline { background:transparent; color:#8aabb8; border:1px solid rgba(255,255,255,0.2); }
 .btn-sm { font-size:11px; padding:6px 12px; }
 
@@ -92,15 +91,18 @@ header {
   border-top: 2px solid var(--accent); 
   border-radius: 10px; 
   padding: 40px 16px; 
-  text-align: center; 
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 3D COIN INTERACTION */
 .logo-wrapper {
   perspective: 1000px;
-  margin: 0 auto 40px auto;
-  width: 220px;
-  height: 220px;
+  margin: 0 auto 30px auto;
+  width: 200px;
+  height: 200px;
   cursor: grab; 
   -webkit-tap-highlight-color: transparent;
   touch-action: none; 
@@ -129,6 +131,8 @@ header {
 .face-back { transform: rotateY(180deg); }
 
 /* RESULTS TYPOGRAPHY */
+.result-content { width: 100%; }
+
 .result-display {
   font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
   font-size: clamp(3rem, 12vw, 4.5rem);
@@ -137,7 +141,7 @@ header {
   overflow: hidden;
   width: 100%;
   text-align: center;
-  color: var(--muted); 
+  color: var(--ice); /* Fixed: Boosted contrast for "READY" state */
   letter-spacing: 0.05em;
   line-height: 1;
   transition: color 0.3s, text-shadow 0.3s;
@@ -167,6 +171,23 @@ header {
   margin-top: 15px;
   height: 20px;
   transition: opacity 0.3s;
+}
+
+/* LANDSCAPE REFLOW STYLES */
+@media (orientation: landscape) and (max-height: 500px) {
+  body { padding: 10px 16px; align-items: stretch; }
+  .app { max-width: 700px; }
+  header { margin-bottom: 10px; padding-bottom: 8px; }
+  .panel-view { 
+    flex-direction: row; 
+    padding: 20px; 
+    gap: 30px; 
+    justify-content: center;
+    text-align: left;
+  }
+  .logo-wrapper { margin: 0; width: 160px; height: 160px; flex-shrink: 0; }
+  .result-content { flex-grow: 1; text-align: center; }
+  .result-display { height: auto; margin-bottom: 5px; }
 }
 
 /* HELP MODAL */
@@ -218,8 +239,10 @@ header {
         </div>
       </div>
 
-      <div id="result" class="result-display">READY</div>
-      <div id="instruction" class="instruction-label">SWIPE MASCOT TO SPIN</div>
+      <div class="result-content">
+        <div id="result" class="result-display">READY</div>
+        <div id="instruction" class="instruction-label">SWIPE MASCOT TO SPIN</div>
+      </div>
 
     </div>
   </div>
@@ -227,64 +250,23 @@ header {
   <div class="modal-bg" id="help-modal" onclick="handleHelpBgClick(event)">
     <div class="modal-box">
       <h2>HammerSpin Help</h2>
-
       <p class="help-h3">What is HammerSpin?</p>
       <p>A fun, digital replacement for the classic pre-game coin toss. Decide who gets the hammer and who picks the rock colors with a quick tap or a satisfying swipe.</p>
-
       <div class="help-divider"></div>
-
       <p class="help-h3">How to Use</p>
       <p><strong style="color:#e8f4f8;">Swipe Mode</strong> &mdash; Drag and flick the mascot to spin it manually. The harder you swipe, the longer it spins!</p>
       <p><strong style="color:#e8f4f8;">Tap Mode</strong> &mdash; Simply tap the mascot to initiate an automatic, randomized 3D coin spin.</p>
-
       <div class="help-divider"></div>
-
       <p class="help-h3">Also Try</p>
       <div class="help-promo">
         <div class="help-promo-icon">&#x23F1;&#xFE0F;</div>
-        <div class="help-promo-text">
-          <strong>HammerTime</strong>
-          A free curling delivery timer. Time rocks from hog-to-hog and track where they end up.
-          <br><a class="help-link" href="https://optimustestprime.github.io/HammerTime/" target="_blank">Try HammerTime &rarr;</a>
-        </div>
-      </div>
-      <div class="help-promo">
-        <div class="help-promo-icon">&#x1F4CA;</div>
-        <div class="help-promo-text">
-          <strong>StoneStat</strong>
-          Track shot scores, player percentages, and game history for your whole team.
-          <br><a class="help-link" href="https://optimustestprime.github.io/stone-stat" target="_blank">Try StoneStat &rarr;</a>
-        </div>
+        <div class="help-promo-text"><strong>HammerTime</strong> Delivery Timer<br><a class="help-link" href="https://optimustestprime.github.io/HammerTime/" target="_blank">Try HammerTime &rarr;</a></div>
       </div>
       <div class="help-promo">
         <div class="help-promo-icon">&#x1F94C;</div>
-        <div class="help-promo-text">
-          <strong>PaceKeeper</strong>
-          Keep your club matches on schedule and ensure everyone knows the rule when the buzzer sounds.
-          <br><a class="help-link" href="https://optimustestprime.github.io/pacekeeper" target="_blank">Try PaceKeeper &rarr;</a>
-        </div>
+        <div class="help-promo-text"><strong>PaceKeeper</strong> Game Monitor<br><a class="help-link" href="https://optimustestprime.github.io/pacekeeper" target="_blank">Try PaceKeeper &rarr;</a></div>
       </div>
-
       <div class="help-divider"></div>
-
-      <p class="help-h3">Connect</p>
-      <div class="help-promo">
-        <div class="help-promo-icon">&#x1F4F8;</div>
-        <div class="help-promo-text">
-          <strong>Instagram</strong>
-          Follow for updates, new features and curling content.
-          <br><a class="help-link" href="https://www.instagram.com/hammertimecurling" target="_blank">@hammertimecurling &rarr;</a>
-        </div>
-      </div>
-      <div class="help-promo" style="margin-top:10px;">
-        <div class="help-promo-icon">&#x2615;</div>
-        <div class="help-promo-text">
-          <strong>Buy Me a Coffee</strong>
-          HammerTime apps are free forever. If they help your club, a coffee keeps development going!
-          <br><a class="help-link" href="https://buymeacoffee.com/CoffeeForCurling" target="_blank">buymeacoffee.com/CoffeeForCurling &rarr;</a>
-        </div>
-      </div>
-
       <div class="modal-btns">
         <button class="btn btn-outline" onclick="closeHelp()">Close</button>
       </div>
@@ -342,8 +324,6 @@ header {
   const resultEl = document.getElementById('result');
   const instructionEl = document.getElementById('instruction');
   const wrapper = document.querySelector('.logo-wrapper');
-
-  coin.style.transition = 'transform 5s cubic-bezier(0.15, 0.85, 0.25, 1)';
 
   function setMode(newMode) {
     if (isSpinning) return; 
@@ -403,7 +383,7 @@ header {
     isDragging = true;
     wrapper.style.cursor = 'grabbing';
     coin.style.transition = 'none'; 
-    const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    const clientX = e.type.includes('mouse') ? e.clientX : (e.touches[0] ? e.touches[0].clientX : 0);
     lastX = clientX;
     lastTime = performance.now();
     velocity = 0;
@@ -416,7 +396,7 @@ header {
   function dragMove(e) {
     if (!isDragging || mode !== 'swipe') return;
     if (e.cancelable) e.preventDefault(); 
-    const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    const clientX = e.type.includes('mouse') ? e.clientX : (e.touches[0] ? e.touches[0].clientX : 0);
     const now = performance.now();
     const dt = now - lastTime;
     const deltaX = clientX - lastX;
