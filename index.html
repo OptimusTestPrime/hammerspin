@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* CORE PACEKEEPER VARIABLES */
+/* CORE BRAND VARIABLES */
 :root {
   --bg: #0d1b2a; 
   --surface: #1a2e42; 
@@ -22,195 +22,150 @@
   --border: rgba(255,255,255,0.15);
 }
 
-html { background: var(--bg); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: var(--bg); }
 
 body { 
   font-family: 'Barlow', -apple-system, BlinkMacSystemFont, Arial, sans-serif; 
-  background: var(--bg); 
   color: var(--ice); 
-  min-height: 100vh; 
   -webkit-font-smoothing: antialiased; 
-  padding: 16px; 
-  overflow-x: hidden;
+  overflow: hidden; 
   display: flex;
   justify-content: center;
-  align-items: center; /* Global vertical centering */
+  align-items: center;
   touch-action: manipulation;
 }
 
-.app { max-width: 480px; width: 100%; margin: 0 auto; transition: max-width 0.3s ease; }
+.app { 
+  width: 100%; 
+  max-width: 480px; 
+  height: 100%; 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: column;
+}
 
-/* HEADER & TOGGLE */
+/* HEADER */
 header { 
-  display: flex; align-items: center; justify-content: space-between; 
-  padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.12); 
-  margin-bottom: 18px; flex-wrap: wrap; gap: 10px; 
+  flex-shrink: 0;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding-bottom: 14px; 
+  border-bottom: 1px solid rgba(255,255,255,0.12); 
+  margin-bottom: 10px;
 }
 .app-title { display: flex; align-items: center; gap: 10px; }
 .logo-icon { 
   width: 40px; height: 40px; 
   background: radial-gradient(circle at 35% 35%, #e8f4f8, #8aabb8); 
   border-radius: 50%; border: 2px solid #3a9bd5; 
-  box-shadow: 0 0 12px rgba(58,155,213,0.4); 
   display: flex; align-items: center; justify-content: center; font-size: 20px; 
 }
 .title-main { 
-  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif; 
+  font-family: 'Barlow Condensed', sans-serif; 
   font-weight: 900; font-size: 26px; letter-spacing: 2px; 
   text-transform: uppercase; line-height: 1; color: var(--ice); 
 }
 .title-time { color: var(--accentL); }
-.logo-sub { 
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase; 
-  color: var(--accentL); display: block; margin-top: 2px; 
-}
+.logo-sub { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accentL); display: block; margin-top: 2px; }
 
 .header-controls { display: flex; gap: 8px; align-items: center; }
-.btn { font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; padding:8px 18px; border-radius:4px; border:none; cursor:pointer; -webkit-appearance:none; appearance:none; transition:opacity 0.15s; }
-.btn-outline { background:transparent; color:#8aabb8; border:1px solid rgba(255,255,255,0.2); }
-.btn-sm { font-size:11px; padding:6px 12px; }
-
-.view-toggle { 
-  display: flex; background: #243b55; border: 1px solid rgba(255,255,255,0.15); 
-  border-radius: 6px; overflow: hidden; 
-}
-.view-toggle button { 
-  background: transparent; border: none; color: #8aabb8; padding: 7px 13px; 
-  cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; 
-  font-weight: 700; letter-spacing: 1px; transition: all 0.2s; 
-  display: flex; align-items: center; -webkit-tap-highlight-color: transparent; 
-}
+.btn { font-family:'Barlow Condensed', sans-serif; font-weight:700; text-transform:uppercase; cursor:pointer; border-radius:4px; transition: 0.2s; }
+.btn-outline { background:transparent; color:#8aabb8; border:1px solid rgba(255,255,255,0.2); padding:8px 14px; font-size:12px; }
+.view-toggle { display: flex; background: #243b55; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.view-toggle button { background: transparent; border: none; color: #8aabb8; padding: 7px 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; }
 .view-toggle button.active { background: #3a9bd5; color: #fff; }
 
-/* MAIN PANEL */
-.display-area { margin-bottom: 20px; }
+/* MAIN DISPLAY AREA */
+.display-area { 
+  flex-grow: 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 100%;
+}
+
 .panel-view { 
   background: var(--surface); 
   border: 1px solid var(--border); 
   border-top: 2px solid var(--accent); 
   border-radius: 10px; 
-  padding: 40px 16px; 
+  padding: 40px 20px; 
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* 3D COIN INTERACTION */
+/* 3D LOGO */
 .logo-wrapper {
   perspective: 1000px;
-  margin: 0 auto 30px auto;
-  width: 200px;
-  height: 200px;
-  cursor: grab; 
-  -webkit-tap-highlight-color: transparent;
-  touch-action: none; 
+  width: 200px; height: 200px;
+  margin-bottom: 30px;
+  cursor: grab;
+  touch-action: none;
 }
-
-.coin-3d {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.mascot-face {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  backface-visibility: hidden;
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
-  pointer-events: none; 
-}
-
+.coin-3d { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
+.mascot-face { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: hidden; filter: drop-shadow(0 15px 20px rgba(0,0,0,0.5)); }
 .face-front { transform: rotateY(0deg); }
 .face-back { transform: rotateY(180deg); }
 
-/* RESULTS TYPOGRAPHY */
-.result-content { width: 100%; }
-
+/* TEXT UI */
 .result-display {
-  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: clamp(3rem, 12vw, 4.5rem);
   font-weight: 900;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 100%;
-  text-align: center;
-  color: var(--ice); 
+  color: var(--ice);
   letter-spacing: 0.05em;
-  line-height: 1;
-  transition: color 0.3s, text-shadow 0.3s;
-  height: clamp(3.5rem, 14vw, 5rem);
+  height: 1.2em;
 }
-
-.result-display.show-heads { 
-  color: var(--heads); 
-  text-shadow: 0 0 20px rgba(91, 184, 245, 0.4);
-}
-.result-display.show-tails { 
-  color: var(--tails); 
-  text-shadow: 0 0 20px rgba(46, 204, 113, 0.4);
-}
-.result-display.spinning {
-  color: var(--muted);
-  font-size: clamp(2rem, 8vw, 3rem);
-  letter-spacing: 4px;
-}
-
+.result-display.show-heads { color: var(--heads); text-shadow: 0 0 20px rgba(91,184,245,0.4); }
+.result-display.show-tails { color: var(--tails); text-shadow: 0 0 20px rgba(46,204,113,0.4); }
+.result-display.spinning { color: var(--muted); font-size: clamp(2rem, 8vw, 3rem); letter-spacing: 4px; }
 .instruction-label {
-  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 14px;
   letter-spacing: 3px;
   color: var(--muted);
   text-transform: uppercase;
-  margin-top: 15px;
-  height: 20px;
-  transition: opacity 0.3s;
+  margin-top: 10px;
 }
 
-/* LANDSCAPE REFLOW STYLES */
+/* LANDSCAPE REFLOW */
 @media (orientation: landscape) and (max-height: 500px) {
-  body { padding: 10px 16px; align-items: center; } /* Explicitly center vertically */
-  .app { max-width: 700px; }
-  header { margin-bottom: 10px; padding-bottom: 8px; }
-  .panel-view { 
-    flex-direction: row; 
-    padding: 20px; 
-    gap: 30px; 
-    justify-content: center;
-    text-align: left;
-  }
-  .logo-wrapper { margin: 0; width: 160px; height: 160px; flex-shrink: 0; }
-  .result-content { flex-grow: 1; text-align: center; }
-  .result-display { height: auto; margin-bottom: 5px; }
+  .app { max-width: 90%; }
+  .panel-view { flex-direction: row; padding: 25px 40px; gap: 50px; justify-content: center; }
+  .logo-wrapper { margin-bottom: 0; width: 180px; height: 180px; }
+  .result-content { flex: 1; text-align: center; }
 }
 
-/* HELP MODAL */
-.modal-bg{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,0.85);display:none;align-items:flex-start;justify-content:center;z-index:2000;opacity:0;pointer-events:none;transition:opacity 0.2s;overflow-y:auto;padding:20px 16px;}
-.modal-bg.open{display:flex;opacity:1;pointer-events:all;}
-.modal-box{background:#1a2e42;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:26px 24px;width:100%;max-width:440px;margin:auto;}
-.modal-box h2{font-family:'Barlow Condensed',Arial,sans-serif;font-size:22px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#5bb8f5;margin-bottom:18px;}
-.help-h3{font-family:'Barlow Condensed',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8aabb8;margin:20px 0 8px;}
-.help-h3:first-of-type{margin-top:0;}
-.modal-box p{font-size:14px;color:#c5dde8;line-height:1.65;margin-bottom:10px;}
-.modal-btns{display:flex;justify-content:flex-end;margin-top:22px;}
-.help-divider{height:1px;background:rgba(255,255,255,0.08);margin:18px 0;}
-.help-link{color:#5bb8f5;text-decoration:none;font-weight:600;}
-.help-promo{background:#243b55;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:14px 16px;margin-top:8px;display:flex;align-items:center;gap:12px;}
-.help-promo-icon{font-size:28px;flex-shrink:0;}
-.help-promo-text{font-size:13px;color:#c5dde8;line-height:1.5;}
-.help-promo-text strong{font-family:'Barlow Condensed',Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#e8f4f8;display:block;margin-bottom:2px;}
+/* UNIFIED HELP MODAL */
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: flex-start; justify-content: center; z-index: 2000; padding: 20px; overflow-y: auto; }
+.modal-bg.open { display: flex; }
+.modal-box { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 0; width: 100%; max-width: 500px; margin: auto; overflow: hidden; }
+
+/* Help Modal Inner Content */
+.modal-content-wrapper { padding: 24px; }
+.help-section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #8aabb8; margin: 24px 0 12px; }
+.help-section-title:first-child { margin-top: 0; }
+.modal-text { font-size: 14px; line-height: 1.6; color: #c5dde8; margin-bottom: 16px; }
+
+/* Help Cards (Also Try & Connect) */
+.help-card { background: #243b55; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 16px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 16px; text-decoration: none; transition: background 0.2s; }
+.help-card:active { background: #1a2e42; }
+.help-card-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.help-card-content { display: flex; flex-direction: column; gap: 6px; }
+.help-card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 1px; text-transform: uppercase; color: var(--ice); }
+.help-card-desc { font-family: 'Barlow', sans-serif; font-size: 13px; line-height: 1.5; color: #c5dde8; }
+.help-card-link { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px; color: var(--accentL); margin-top: 2px; }
 </style>
 </head>
 <body>
 
 <div class="app">
-
   <header>
     <div class="app-title">
       <div class="logo-icon">&#x1F94C;</div>
@@ -219,9 +174,8 @@ header {
         <span class="logo-sub">Coin Toss</span>
       </div>
     </div>
-    
     <div class="header-controls">
-      <button class="btn btn-outline btn-sm" onclick="showHelp()">Help</button>
+      <button class="btn btn-outline" onclick="openModal()">Help</button>
       <div class="view-toggle">
         <button id="btn-tap" onclick="setMode('tap')">TAP</button>
         <button id="btn-spin" class="active" onclick="setMode('swipe')">SWIPE</button>
@@ -231,204 +185,183 @@ header {
 
   <div class="display-area">
     <div class="panel-view">
-      
       <div class="logo-wrapper">
         <div class="coin-3d" id="ht-coin">
-          <img src="mascot-front.png" alt="Mascot Front" class="mascot-face face-front">
-          <img src="mascot-back.png" alt="Mascot Back" class="mascot-face face-back">
+          <img src="mascot-front.png" class="mascot-face face-front">
+          <img src="mascot-back.png" class="mascot-face face-back">
         </div>
       </div>
-
       <div class="result-content">
         <div id="result" class="result-display">READY</div>
         <div id="instruction" class="instruction-label">SWIPE MASCOT TO SPIN</div>
       </div>
-
     </div>
   </div>
 
-  <div class="modal-bg" id="help-modal" onclick="handleHelpBgClick(event)">
+  <div class="modal-bg" id="help-modal">
     <div class="modal-box">
-      <h2>HammerSpin Help</h2>
-      <p class="help-h3">What is HammerSpin?</p>
-      <p>A fun, digital replacement for the classic pre-game coin toss. Decide who gets the hammer and who picks the rock colors with a quick tap or a satisfying swipe.</p>
-      <div class="help-divider"></div>
-      <p class="help-h3">How to Use</p>
-      <p><strong style="color:#e8f4f8;">Swipe Mode</strong> &mdash; Drag and flick the mascot to spin it manually. The harder you swipe, the longer it spins!</p>
-      <p><strong style="color:#e8f4f8;">Tap Mode</strong> &mdash; Simply tap the mascot to initiate an automatic, randomized 3D coin spin.</p>
-      <div class="help-divider"></div>
-      <p class="help-h3">Also Try</p>
-      <div class="help-promo">
-        <div class="help-promo-icon">&#x23F1;&#xFE0F;</div>
-        <div class="help-promo-text"><strong>HammerTime</strong> Delivery Timer<br><a class="help-link" href="https://optimustestprime.github.io/HammerTime/" target="_blank">Try HammerTime &rarr;</a></div>
-      </div>
-      <div class="help-promo">
-        <div class="help-promo-icon">&#x1F94C;</div>
-        <div class="help-promo-text"><strong>PaceKeeper</strong> Game Monitor<br><a class="help-link" href="https://optimustestprime.github.io/pacekeeper" target="_blank">Try PaceKeeper &rarr;</a></div>
-      </div>
-      <div class="help-divider"></div>
-      <div class="modal-btns">
-        <button class="btn btn-outline" onclick="closeHelp()">Close</button>
+      <div class="modal-content-wrapper">
+        
+        <div class="help-section-title">What is HammerSpin?</div>
+        <p class="modal-text">A fun, digital replacement for the classic pre-game coin toss. Decide who gets the hammer and who picks the rock colors with a quick tap or a satisfying swipe.</p>
+
+        <div class="help-section-title">How to Use</div>
+        <p class="modal-text" style="margin-bottom: 8px;"><strong style="color: #e8f4f8;">Swipe Mode</strong> &mdash; Drag and flick the mascot to spin it manually. The harder you swipe, the longer it spins!</p>
+        <p class="modal-text"><strong style="color: #e8f4f8;">Tap Mode</strong> &mdash; Simply tap the mascot to initiate an automatic, randomized 3D coin spin.</p>
+
+        <div class="help-section-title">Also Try</div>
+        
+        <a href="https://optimustestprime.github.io/HammerTime/" class="help-card" target="_blank">
+          <div class="help-card-icon">⏱️</div>
+          <div class="help-card-content">
+            <div class="help-card-title">HammerTime</div>
+            <div class="help-card-desc">A free curling delivery timer. Time rocks from hog-to-hog and track where they end up.</div>
+            <div class="help-card-link">Try HammerTime &rarr;</div>
+          </div>
+        </a>
+
+        <a href="https://optimustestprime.github.io/stone-stat" class="help-card" target="_blank">
+          <div class="help-card-icon">📊</div>
+          <div class="help-card-content">
+            <div class="help-card-title">StoneStat</div>
+            <div class="help-card-desc">Track shot scores, player percentages, and game history for your whole team.</div>
+            <div class="help-card-link">Try StoneStat &rarr;</div>
+          </div>
+        </a>
+        
+        <a href="https://optimustestprime.github.io/pacekeeper" class="help-card" target="_blank">
+          <div class="help-card-icon">🥌</div>
+          <div class="help-card-content">
+            <div class="help-card-title">PaceKeeper</div>
+            <div class="help-card-desc">Keep your club games on schedule and ensure everyone knows the rule when the buzzer sounds.</div>
+            <div class="help-card-link">Try PaceKeeper &rarr;</div>
+          </div>
+        </a>
+
+        <div class="help-section-title">Connect</div>
+
+        <a href="https://www.instagram.com/hammertimecurling" class="help-card" target="_blank">
+          <div class="help-card-icon">📸</div>
+          <div class="help-card-content">
+            <div class="help-card-title">Instagram</div>
+            <div class="help-card-desc">Follow for updates, new features and curling content.</div>
+            <div class="help-card-link">@hammertimecurling &rarr;</div>
+          </div>
+        </a>
+
+        <a href="https://buymeacoffee.com/CoffeeForCurling" class="help-card" target="_blank">
+          <div class="help-card-icon">☕</div>
+          <div class="help-card-content">
+            <div class="help-card-title">Buy Me a Coffee</div>
+            <div class="help-card-desc">HammerTime apps are free forever. If they help your club, a coffee keeps development going!</div>
+            <div class="help-card-link">buymeacoffee.com/CoffeeForCurling &rarr;</div>
+          </div>
+        </a>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+          <button class="btn btn-outline" onclick="closeModal()">Close</button>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
-  function showHelp() { document.getElementById('help-modal').classList.add('open'); }
-  function closeHelp() { document.getElementById('help-modal').classList.remove('open'); }
-  function handleHelpBgClick(e) { if (e.target === document.getElementById('help-modal')) closeHelp(); }
-
+  // AUDIO ENGINE
   let audioCtx;
-  function initAudio() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-  }
+  const initAudio = () => { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); };
+  const playTick = () => { initAudio(); const osc = audioCtx.createOscillator(); const g = audioCtx.createGain(); osc.type = 'square'; osc.frequency.setValueAtTime(150, audioCtx.currentTime); g.gain.setValueAtTime(0.05, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05); osc.connect(g); g.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.05); };
+  const playPing = () => { initAudio(); const osc = audioCtx.createOscillator(); const g = audioCtx.createGain(); osc.type = 'sine'; osc.frequency.setValueAtTime(800, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1); g.gain.setValueAtTime(0.3, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4); osc.connect(g); g.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.4); };
 
-  function playPing() {
-    initAudio();
-    const osc = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(800, audioCtx.currentTime); 
-    osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1); 
-    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4); 
-    osc.connect(gainNode); gainNode.connect(audioCtx.destination);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.4);
-  }
+  // APP LOGIC
+  let mode = 'swipe', isSpinning = false, currentRot = 0, isDragging = false, lastX = 0, velocity = 0, lastTickRot = 0;
+  const coin = document.getElementById('ht-coin'), res = document.getElementById('result'), inst = document.getElementById('instruction'), wrap = document.querySelector('.logo-wrapper');
 
-  function playTick() {
-    initAudio();
-    const osc = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(150, audioCtx.currentTime); 
-    gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); 
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05); 
-    osc.connect(gainNode); gainNode.connect(audioCtx.destination);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.05);
-  }
+  const openModal = () => document.getElementById('help-modal').classList.add('open');
+  const closeModal = () => document.getElementById('help-modal').classList.remove('open');
 
-  let mode = 'swipe'; 
-  let isSpinning = false;
-  let currentRotation = 0;
-  let isDragging = false;
-  let lastX = 0;
-  let lastTime = 0;
-  let velocity = 0;
-  let lastTickRotation = 0; 
+  // Close modal when clicking outside of the box
+  document.getElementById('help-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
 
-  const coin = document.getElementById('ht-coin');
-  const resultEl = document.getElementById('result');
-  const instructionEl = document.getElementById('instruction');
-  const wrapper = document.querySelector('.logo-wrapper');
-
-  function setMode(newMode) {
-    if (isSpinning) return; 
-    mode = newMode;
+  function setMode(m) {
+    if (isSpinning) return;
+    mode = m;
     document.getElementById('btn-tap').classList.toggle('active', mode === 'tap');
     document.getElementById('btn-spin').classList.toggle('active', mode === 'swipe');
-    instructionEl.innerText = mode === 'tap' ? "TAP MASCOT TO SPIN" : "SWIPE MASCOT TO SPIN";
-    wrapper.style.cursor = mode === 'tap' ? 'pointer' : 'grab';
+    inst.innerText = mode === 'tap' ? "TAP MASCOT TO SPIN" : "SWIPE MASCOT TO SPIN";
+    wrap.style.cursor = mode === 'tap' ? 'pointer' : 'grab';
   }
 
-  function showResultUI(finalRotation) {
-    const isHeads = Math.abs(Math.round(finalRotation / 180)) % 2 === 0;
-    playPing(); 
-    if (isHeads) {
-      resultEl.innerText = "HEADS";
-      resultEl.className = "result-display show-heads";
-    } else {
-      resultEl.innerText = "TAILS";
-      resultEl.className = "result-display show-tails";
-    }
-    instructionEl.innerText = mode === 'tap' ? "TAP MASCOT TO SPIN AGAIN" : "SWIPE MASCOT TO SPIN AGAIN";
-    instructionEl.style.opacity = '1';
+  function endSpin(rot) {
+    const heads = Math.abs(Math.round(rot / 180)) % 2 === 0;
+    playPing();
+    res.innerText = heads ? "HEADS" : "TAILS";
+    res.className = heads ? "result-display show-heads" : "result-display show-tails";
+    inst.innerText = mode === 'tap' ? "TAP MASCOT TO SPIN AGAIN" : "SWIPE MASCOT TO SPIN AGAIN";
+    inst.style.opacity = '1';
     isSpinning = false;
   }
 
-  function triggerAutoSpin() {
-    isSpinning = true;
-    initAudio();
-    playTick(); 
-    resultEl.className = 'result-display spinning';
-    resultEl.innerText = "SPINNING...";
-    instructionEl.style.opacity = '0';
-    const isHeads = Math.random() < 0.5;
-    let baseRotation = Math.ceil(currentRotation / 360) * 360;
-    baseRotation += 3600; 
-    currentRotation = isHeads ? baseRotation : baseRotation + 180;
-    coin.style.transition = 'transform 5s cubic-bezier(0.15, 0.85, 0.25, 1)';
-    coin.style.transform = `rotateY(${currentRotation}deg)`;
-    setTimeout(() => { showResultUI(currentRotation); }, 5000);
-  }
+  wrap.addEventListener('mousedown', start);
+  wrap.addEventListener('touchstart', start, {passive: false});
+  document.addEventListener('mousemove', move);
+  document.addEventListener('touchmove', move, {passive: false});
+  document.addEventListener('mouseup', end);
+  document.addEventListener('touchend', end);
 
-  wrapper.addEventListener('mousedown', dragStart);
-  wrapper.addEventListener('touchstart', dragStart, {passive: false});
-  document.addEventListener('mousemove', dragMove);
-  document.addEventListener('touchmove', dragMove, {passive: false});
-  document.addEventListener('mouseup', dragEnd);
-  document.addEventListener('touchend', dragEnd);
-
-  function dragStart(e) {
+  function start(e) {
     if (isSpinning) return;
-    initAudio(); 
-    if (e.target.closest('#help-modal')) return;
-    if (mode === 'tap') {
-      if (e.type === 'mousedown' || e.type === 'touchstart') triggerAutoSpin();
-      return;
-    }
+    initAudio();
+    if (mode === 'tap') { triggerAuto(); return; }
     isDragging = true;
-    wrapper.style.cursor = 'grabbing';
-    coin.style.transition = 'none'; 
-    const clientX = e.type.includes('mouse') ? e.clientX : (e.touches[0] ? e.touches[0].clientX : 0);
-    lastX = clientX;
-    lastTime = performance.now();
+    coin.style.transition = 'none';
+    lastX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
     velocity = 0;
-    lastTickRotation = currentRotation;
-    resultEl.className = 'result-display spinning';
-    resultEl.innerText = "";
-    instructionEl.style.opacity = '0';
+    res.innerText = "";
+    inst.style.opacity = '0';
   }
 
-  function dragMove(e) {
-    if (!isDragging || mode !== 'swipe') return;
-    if (e.cancelable) e.preventDefault(); 
-    const clientX = e.type.includes('mouse') ? e.clientX : (e.touches[0] ? e.touches[0].clientX : 0);
-    const now = performance.now();
-    const dt = now - lastTime;
-    const deltaX = clientX - lastX;
-    currentRotation += deltaX; 
-    coin.style.transform = `rotateY(${currentRotation}deg)`;
-    if (Math.abs(currentRotation - lastTickRotation) > 30) {
-      playTick();
-      lastTickRotation = currentRotation;
-    }
-    if (dt > 0) velocity = deltaX / dt; 
-    lastX = clientX;
-    lastTime = now;
+  function move(e) {
+    if (!isDragging) return;
+    if (e.cancelable) e.preventDefault();
+    const x = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    const dx = x - lastX;
+    currentRot += dx;
+    coin.style.transform = `rotateY(${currentRot}deg)`;
+    if (Math.abs(currentRot - lastTickRot) > 30) { playTick(); lastTickRot = currentRot; }
+    velocity = dx;
+    lastX = x;
   }
 
-  function dragEnd(e) {
-    if (!isDragging || mode !== 'swipe') return;
+  function end() {
+    if (!isDragging) return;
     isDragging = false;
     isSpinning = true;
-    wrapper.style.cursor = 'grab';
-    resultEl.innerText = "SPINNING...";
-    let momentumDegrees = velocity * 2000; 
-    if (Math.abs(momentumDegrees) < 360) {
-        momentumDegrees = (velocity >= 0 ? 1 : -1) * (720 + Math.random() * 720);
-    }
-    let targetRotation = currentRotation + momentumDegrees;
-    let snappedTarget = Math.round(targetRotation / 180) * 180; 
+    res.innerText = "SPINNING...";
+    let mom = velocity * 1500;
+    if (Math.abs(mom) < 720) mom = (velocity >= 0 ? 1 : -1) * (720 + Math.random() * 720);
+    const target = Math.round((currentRot + mom) / 180) * 180;
     coin.style.transition = 'transform 4s cubic-bezier(0.1, 0.8, 0.2, 1)';
-    coin.style.transform = `rotateY(${snappedTarget}deg)`;
-    currentRotation = snappedTarget;
-    setTimeout(() => { showResultUI(snappedTarget); }, 4000);
+    coin.style.transform = `rotateY(${target}deg)`;
+    currentRot = target;
+    setTimeout(() => endSpin(target), 4000);
+  }
+
+  function triggerAuto() {
+    isSpinning = true;
+    playTick();
+    res.className = 'result-display spinning';
+    res.innerText = "SPINNING...";
+    inst.style.opacity = '0';
+    const heads = Math.random() < 0.5;
+    const target = (Math.ceil(currentRot / 360) * 360) + 3600 + (heads ? 0 : 180);
+    coin.style.transition = 'transform 5s cubic-bezier(0.15, 0.85, 0.25, 1)';
+    coin.style.transform = `rotateY(${target}deg)`;
+    currentRot = target;
+    setTimeout(() => endSpin(target), 5000);
   }
 </script>
-
 </body>
 </html>
