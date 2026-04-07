@@ -71,10 +71,12 @@ header {
 .logo-sub { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accentL); display: block; margin-top: 2px; }
 
 .header-controls { display: flex; gap: 8px; align-items: center; }
-.btn { font-family:'Barlow Condensed', sans-serif; font-weight:700; text-transform:uppercase; cursor:pointer; border-radius:4px; transition: 0.2s; }
-.btn-outline { background:transparent; color:#8aabb8; border:1px solid rgba(255,255,255,0.2); padding:8px 14px; font-size:12px; }
+.btn { font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; padding:8px 18px; border-radius:4px; border:none; cursor:pointer; -webkit-appearance:none; appearance:none; transition:opacity 0.15s; }
+.btn:active { opacity:0.7; }
+.btn-outline { background:transparent; color:#8aabb8; border:1px solid rgba(255,255,255,0.2); }
+.btn-sm { font-size:11px; padding:6px 12px; }
 .view-toggle { display: flex; background: #243b55; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-.view-toggle button { background: transparent; border: none; color: #8aabb8; padding: 7px 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; }
+.view-toggle button { background: transparent; border: none; color: #8aabb8; padding: 7px 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; cursor:pointer;}
 .view-toggle button.active { background: #3a9bd5; color: #fff; }
 
 /* MAIN DISPLAY AREA */
@@ -142,25 +144,22 @@ header {
   .result-content { flex: 1; text-align: center; }
 }
 
-/* UNIFIED HELP MODAL */
-.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: flex-start; justify-content: center; z-index: 2000; padding: 20px; overflow-y: auto; }
-.modal-bg.open { display: flex; }
-.modal-box { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 0; width: 100%; max-width: 500px; margin: auto; overflow: hidden; }
-
-/* Help Modal Inner Content */
-.modal-content-wrapper { padding: 24px; }
-.help-section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #8aabb8; margin: 24px 0 12px; }
-.help-section-title:first-child { margin-top: 0; }
-.modal-text { font-size: 14px; line-height: 1.6; color: #c5dde8; margin-bottom: 16px; }
-
-/* Help Cards (Also Try & Connect) */
-.help-card { background: #243b55; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 16px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 16px; text-decoration: none; transition: background 0.2s; }
-.help-card:active { background: #1a2e42; }
-.help-card-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
-.help-card-content { display: flex; flex-direction: column; gap: 6px; }
-.help-card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 1px; text-transform: uppercase; color: var(--ice); }
-.help-card-desc { font-family: 'Barlow', sans-serif; font-size: 13px; line-height: 1.5; color: #c5dde8; }
-.help-card-link { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px; color: var(--accentL); margin-top: 2px; }
+/* UNIFIED HELP MODAL (From PaceKeeper) */
+.modal-bg{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,0.85);display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;-webkit-justify-content:center;justify-content:center;z-index:2000;opacity:0;pointer-events:none;-webkit-transition:opacity 0.2s;transition:opacity 0.2s;overflow-y:auto;padding:20px 16px;}
+.modal-bg.open{opacity:1;pointer-events:all;}
+.modal-box{background:#1a2e42;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:26px 24px;width:100%;max-width:440px;margin:auto;}
+.modal-box h2{font-family:'Barlow Condensed',Arial,sans-serif;font-size:22px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#5bb8f5;margin-bottom:18px;}
+.help-h3{font-family:'Barlow Condensed',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8aabb8;margin:20px 0 8px;}
+.help-h3:first-of-type{margin-top:0;}
+.modal-box p{font-size:14px;color:#c5dde8;line-height:1.65;margin-bottom:10px;}
+.modal-box p.help-subline{font-size:11px; color:#5bb8f5;}
+.modal-btns{display:-webkit-flex;display:flex;-webkit-justify-content:flex-end;justify-content:flex-end;margin-top:22px;}
+.help-divider{height:1px;background:rgba(255,255,255,0.08);margin:18px 0;}
+.help-link{color:#5bb8f5;text-decoration:none;font-weight:600;}
+.help-promo{background:#243b55;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:14px 16px;margin-top:8px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:12px;}
+.help-promo-icon{font-size:28px;-webkit-flex-shrink:0;flex-shrink:0;}
+.help-promo-text{font-size:13px;color:#c5dde8;line-height:1.5;}
+.help-promo-text strong{font-family:'Barlow Condensed',Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#e8f4f8;display:block;margin-bottom:2px;}
 </style>
 </head>
 <body>
@@ -175,7 +174,7 @@ header {
       </div>
     </div>
     <div class="header-controls">
-      <button class="btn btn-outline" onclick="openModal()">Help</button>
+      <button class="btn btn-outline btn-sm" onclick="showHelp()">Help</button>
       <div class="view-toggle">
         <button id="btn-tap" onclick="setMode('tap')">TAP</button>
         <button id="btn-spin" class="active" onclick="setMode('swipe')">SWIPE</button>
@@ -198,75 +197,97 @@ header {
     </div>
   </div>
 
-  <div class="modal-bg" id="help-modal">
+  <div class="modal-bg" id="help-modal" onclick="handleHelpBgClick(event)">
     <div class="modal-box">
-      <div class="modal-content-wrapper">
-        
-        <div class="help-section-title">What is HammerSpin?</div>
-        <p class="modal-text">A fun, digital replacement for the classic pre-game coin toss. Decide who gets the hammer and who picks the rock colors with a quick tap or a satisfying swipe.</p>
+      <h2>HammerSpin Help</h2>
 
-        <div class="help-section-title">How to Use</div>
-        <p class="modal-text" style="margin-bottom: 8px;"><strong style="color: #e8f4f8;">Swipe Mode</strong> &mdash; Drag and flick the mascot to spin it manually. The harder you swipe, the longer it spins!</p>
-        <p class="modal-text"><strong style="color: #e8f4f8;">Tap Mode</strong> &mdash; Simply tap the mascot to initiate an automatic, randomized 3D coin spin.</p>
+      <p class="help-h3">What is HammerSpin?</p>
+      <p>A fun, digital replacement for the classic pre-game coin toss. Decide who gets the hammer and who picks the rock colors with a quick tap or a satisfying swipe.</p>
+      <p class="help-subline">Version 1.0.0</p>
 
-        <div class="help-section-title">Also Try</div>
-        
-        <a href="https://optimustestprime.github.io/HammerTime/" class="help-card" target="_blank">
-          <div class="help-card-icon">⏱️</div>
-          <div class="help-card-content">
-            <div class="help-card-title">HammerTime</div>
-            <div class="help-card-desc">A free curling delivery timer. Time rocks from hog-to-hog and track where they end up.</div>
-            <div class="help-card-link">Try HammerTime &rarr;</div>
-          </div>
-        </a>
+      <div class="help-divider"></div>
 
-        <a href="https://optimustestprime.github.io/stone-stat" class="help-card" target="_blank">
-          <div class="help-card-icon">📊</div>
-          <div class="help-card-content">
-            <div class="help-card-title">StoneStat</div>
-            <div class="help-card-desc">Track shot scores, player percentages, and game history for your whole team.</div>
-            <div class="help-card-link">Try StoneStat &rarr;</div>
-          </div>
-        </a>
-        
-        <a href="https://optimustestprime.github.io/pacekeeper" class="help-card" target="_blank">
-          <div class="help-card-icon">🥌</div>
-          <div class="help-card-content">
-            <div class="help-card-title">PaceKeeper</div>
-            <div class="help-card-desc">Keep your club games on schedule and ensure everyone knows the rule when the buzzer sounds.</div>
-            <div class="help-card-link">Try PaceKeeper &rarr;</div>
-          </div>
-        </a>
+      <p class="help-h3">How to Use</p>
+      <p><strong style="color:#e8f4f8;">Swipe Mode</strong> &mdash; Drag and flick the mascot to spin it manually. The harder you swipe, the longer it spins!</p>
+      <p><strong style="color:#e8f4f8;">Tap Mode</strong> &mdash; Simply tap the mascot to initiate an automatic, randomized 3D coin spin.</p>
 
-        <div class="help-section-title">Connect</div>
+      <div class="help-divider"></div>
 
-        <a href="https://www.instagram.com/hammertimecurling" class="help-card" target="_blank">
-          <div class="help-card-icon">📸</div>
-          <div class="help-card-content">
-            <div class="help-card-title">Instagram</div>
-            <div class="help-card-desc">Follow for updates, new features and curling content.</div>
-            <div class="help-card-link">@hammertimecurling &rarr;</div>
-          </div>
-        </a>
-
-        <a href="https://buymeacoffee.com/CoffeeForCurling" class="help-card" target="_blank">
-          <div class="help-card-icon">☕</div>
-          <div class="help-card-content">
-            <div class="help-card-title">Buy Me a Coffee</div>
-            <div class="help-card-desc">HammerTime apps are free forever. If they help your club, a coffee keeps development going!</div>
-            <div class="help-card-link">buymeacoffee.com/CoffeeForCurling &rarr;</div>
-          </div>
-        </a>
-
-        <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
-          <button class="btn btn-outline" onclick="closeModal()">Close</button>
+      <p class="help-h3">Also Try</p>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x23F1;&#xFE0F;</div>
+        <div class="help-promo-text">
+          <strong>HammerTime</strong>
+          A free curling delivery timer. Time rocks from hog-to-hog and track where they end up.
+          <br><a class="help-link" href="https://optimustestprime.github.io/HammerTime/" target="_blank">Try HammerTime &rarr;</a>
         </div>
+      </div>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x1F4CA;</div>
+        <div class="help-promo-text">
+          <strong>StoneStat</strong>
+          Track shot scores, player percentages, and game history for your whole team.
+          <br><a class="help-link" href="https://optimustestprime.github.io/stone-stat" target="_blank">Try StoneStat &rarr;</a>
+        </div>
+      </div>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x1F94C;</div>
+        <div class="help-promo-text">
+          <strong>PaceKeeper</strong>
+          Keep your club games on schedule and ensure everyone knows the rule when the buzzer sounds.
+          <br><a class="help-link" href="https://optimustestprime.github.io/pacekeeper" target="_blank">Try PaceKeeper &rarr;</a>
+        </div>
+      </div>
+
+      <div class="help-divider"></div>
+
+      <p class="help-h3">Connect</p>
+      <div class="help-promo">
+        <div class="help-promo-icon">&#x1F4F8;</div>
+        <div class="help-promo-text">
+          <strong>Instagram</strong>
+          Follow for updates, new features and curling content.
+          <br><a class="help-link" href="https://www.instagram.com/hammertimecurling" target="_blank">@hammertimecurling &rarr;</a>
+        </div>
+      </div>
+      <div class="help-promo" style="margin-top:10px;">
+        <div class="help-promo-icon">&#x1F310;</div>
+        <div class="help-promo-text">
+          <strong>Website</strong>
+          Find all our curling apps, tools, and projects in one place.
+          <br><a class="help-link" href="https://hammertimecurling.com" target="_blank">hammertimecurling.com &rarr;</a>
+        </div>
+      </div>
+      <div class="help-promo" style="margin-top:10px;">
+        <div class="help-promo-icon">&#x2615;</div>
+        <div class="help-promo-text">
+          <strong>Buy Me a Coffee</strong>
+          HammerTime apps are free forever. If they help your club, a coffee keeps development going!
+          <br><a class="help-link" href="https://buymeacoffee.com/CoffeeForCurling" target="_blank">buymeacoffee.com/CoffeeForCurling &rarr;</a>
+        </div>
+      </div>
+
+      <div class="modal-btns">
+        <button class="btn btn-outline" onclick="closeHelp()">Close</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+  // ---------- HELP MODAL LOGIC ----------
+  function showHelp() {
+    document.getElementById('help-modal').className = 'modal-bg open';
+  }
+
+  function closeHelp() {
+    document.getElementById('help-modal').className = 'modal-bg';
+  }
+
+  function handleHelpBgClick(e) {
+    if (e.target === document.getElementById('help-modal')) closeHelp();
+  }
+
   // AUDIO ENGINE
   let audioCtx;
   const initAudio = () => { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); };
@@ -276,14 +297,6 @@ header {
   // APP LOGIC
   let mode = 'swipe', isSpinning = false, currentRot = 0, isDragging = false, lastX = 0, velocity = 0, lastTickRot = 0;
   const coin = document.getElementById('ht-coin'), res = document.getElementById('result'), inst = document.getElementById('instruction'), wrap = document.querySelector('.logo-wrapper');
-
-  const openModal = () => document.getElementById('help-modal').classList.add('open');
-  const closeModal = () => document.getElementById('help-modal').classList.remove('open');
-
-  // Close modal when clicking outside of the box
-  document.getElementById('help-modal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
 
   function setMode(m) {
     if (isSpinning) return;
